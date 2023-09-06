@@ -42,7 +42,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
           <div class="container-fluid">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="dashboard.html">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="<?php echo base_url(); ?>">
               Argon Dashboard 2
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,21 +52,6 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </span>
             </button>
-            <div class="collapse navbar-collapse" id="navigation">
-              <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="<?php echo base_url(); ?>">
-                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                    Home
-                  </a>
-                </li>
-              </ul>
-              <ul class="navbar-nav d-lg-block d-none">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/product/argon-dashboard" class="btn btn-sm mb-0 me-1 btn-primary">Free Download</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </nav>
         <!-- End Navbar -->
@@ -85,19 +70,25 @@
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
-                    <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
+                  <form role="form" method="POST" action="<?php echo base_url(); ?>login/login">
+                    <div class="form-group mb-3">
+                      <label for="example-text-input" class="form-control-label">Username</label>
+                      <input type="text" name="username" class="form-control form-control-sm" placeholder="Username" aria-label="Username">
                     </div>
-                    <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                    <div class="form-group mb-3">
+                      <label for="example-text-input" class="form-control-label">Password</label>
+                      <input type="password" name="password" class="form-control form-control-sm" placeholder="Password" aria-label="Password">
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe">
-                      <label class="form-check-label" for="rememberMe">Remember me</label>
+                    <div class="form-group mb-3">
+                      <label for="example-text-input" class="form-control-label">Sebagai</label>
+                      <select class="form-control form-control-sm" name="level" id="exampleFormControlSelect1">
+                        <option value="0">Nasabah</option>
+                        <option value="1">Teller</option>
+                        <option value="2">Manager</option>
+                      </select>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                     </div>
                   </form>
                 </div>
