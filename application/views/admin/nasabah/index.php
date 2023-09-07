@@ -4,13 +4,14 @@
             <thead>
                 <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Nasabah</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat Nasabah
-                    </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         No Telfon</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tempat
                     </th>
-                    <th class="text-secondary opacity-7"></th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Lahir</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat Nasabah
+                    </th>
                 </tr>
             </thead>
             <tbody>
