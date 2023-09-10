@@ -5538,6 +5538,7 @@ fieldset:disabled .btn {
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
   display: flex;
+  justify-content: flex-end;
   padding-left: 0;
   list-style: none;
 }
@@ -21628,6 +21629,14 @@ fieldset:disabled .btn {
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
+.dataTables_filter label {
+  float: right;
+}
+
+.dataTables_length label {
+  width: 100px !important;
+}
+
 label,
 .form-label {
   font-size: 0.75rem;
@@ -23783,11 +23792,14 @@ hr.horizontal.gray-light {
   align-items: center;
   justify-content: center;
   color: #8392ab;
-  padding: 0;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: 0 3px;
-  border-radius: 50% !important;
-  width: 36px;
-  height: 36px;
+  border-radius: 5px !important;
+  /* height: 36px; */
+  min-width: 36px;
   font-size: 0.875rem;
 }
 

@@ -42,10 +42,10 @@
             <div class="col-md-6 text-center text-lg-end">
                 <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
                     <div class="me-3 pe-3 border-end py-2">
-                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>info@example.com</p>
+                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>artagammasejahtera@gmail.com</p>
                     </div>
                     <div class="py-2">
-                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</p>
+                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+62 877 3312 3123</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
         <a href="<?php echo base_url(); ?>" class="navbar-brand p-0">
-            <h1 class="m-0 text-uppercase text-primary"><i class="far fa-smile text-primary me-2"></i>consult</h1>
+            <img src="<?php echo base_url(); ?>assets/assets/images/logo_1.png" class="navbar-brand-img h-100" alt="main_logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -79,8 +79,8 @@
                     <img class="w-100" src="<?php echo base_url(); ?>assets/client/img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase">Koperasi Arta Gamma Sejahtera</h5>
-                            <h1 class="display-1 text-white mb-md-4">We Provide Solution On Your Economy</h1>
+                            <h5 class="text-white text-uppercase">Raih Kesuksesan Usaha Bersama</h5>
+                            <h1 class="display-1 text-white mb-md-4">Koperasi<br>Arta Gamma Sejahtera</h1>
                         </div>
                     </div>
                 </div>
@@ -94,18 +94,23 @@
     <div class="container-fluid bg-secondary p-0">
         <div class="row g-0">
             <div class="col-lg-6 py-6 px-5">
-                <h1 class="display-5 mb-4">Welcome <span class="text-primary">To </span></h1>
+                <h1 class="display-5 mb-4">Selamat <span class="text-primary">Datang </span></h1>
                 <h4 class="text-primary mb-4">Koperasi Arta Gamma Sejahtera</h4>
-                <p class="mb-4">Et stet ipsum nonumy rebum eos justo, accusam invidunt aliquyam stet magna at et sanctus, vero sea sit amet dolores, sit dolor duo invidunt dolor, kasd rebum consetetur diam invidunt erat stet. Accusam nonumy lorem kasd eirmod. Justo clita sadipscing ea invidunt rebum sadipscing consetetur. Amet diam amet amet sanctus sanctus invidunt erat ipsum eirmod.</p>
+                <p class="mb-4">
+                    Selamat datang di Arta Gamma Sejahtera! Koperasi Arta Gamma Sejahtera adalah Perusahaan Modal \
+                    Ventura yang terdaftar serta aktif dan terlibat menjadi perusahaan jasa 
+                    keuangan mikro di Indonesia. Arta Gamma Sejahtera menyediakan 
+                    pemberian pinjaman modal usaha.
+                </p>
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="h-100 d-flex flex-column justify-content-center bg-primary p-5">
                     <div class="d-flex text-white mb-5">
                         <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white text-primary rounded-circle mx-auto mb-4" style="width: 60px; height: 60px;">
                             <i class="fa fa-user-tie fs-4"></i>
                         </div>
                         <div class="ps-4">
-                            <h3>Business Planning</h3>
+                            <h3>Individual Lending - Bina Usaha</h3>
                             <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor ipsum amet eos erat ipsum lorem et sit sed stet lorem sit clita duo</p>
                         </div>
                     </div>
@@ -128,14 +133,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- About End -->
     
 
     <!-- Services Start -->
-    <div class="container-fluid pt-6 px-5">
+    <!-- <div class="container-fluid pt-6 px-5">
         <div class="text-center mx-auto mb-5" style="max-width: 600px;">
             <h1 class="display-5 mb-0">What We Offer</h1>
             <hr class="w-25 mx-auto bg-primary">
@@ -196,12 +201,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Services End -->
 
 
     <!-- Features Start -->
-    <div class="container-fluid py-6 px-5">
+    <!-- <div class="container-fluid py-6 px-5">
         <div class="text-center mx-auto mb-5" style="max-width: 600px;">
             <h1 class="display-5 mb-0">Why Choose Us!!!</h1>
             <hr class="w-25 mx-auto bg-primary">
@@ -267,19 +272,19 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Features Start -->
 
 
     <div class="container-fluid bg-dark text-secondary p-5">
         <div class="row g-5">
             <div class="col-md-6">
-                <h3 class="text-white mb-4">Get In Touch</h3>
-                <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>info@example.com</p>
-                <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>+012 345 67890</p>
+                <h3 class="text-white mb-4">Kontak Kami</h3>
+                <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Semarang, Jawa Tengah, Indonesia</p>
+                <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>artagammasejahtera@gmail.com</p>
+                <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>+62 877 3312 3123</p>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <h3 class="text-white mb-4">Follow Us</h3>
                 <div class="d-flex">
                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -287,11 +292,11 @@
                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-instagram fw-normal"></i></a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="container-fluid bg-dark text-secondary text-center border-top py-4 px-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <p class="m-0">&copy; <a class="text-secondary border-bottom" href="#">Your Site Name</a>. All Rights Reserved. Designed by <a class="text-secondary border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
+        <p class="m-0">&copy; 2023 - <?php echo date('Y'); ?> <span class="text-secondary border-bottom">Koperasi Arta Gamma Sejahtera</span>. All Rights Reserved</p>
     </div>
     <!-- Footer End -->
 
