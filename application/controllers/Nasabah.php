@@ -29,6 +29,7 @@ class Nasabah extends CI_Controller {
 	{	
 		
 		$data['nasabah'] = $this->Data_model->get_data('nasabah')->result();
+        // $data['nasabah'] = $this->db->where("nasabah", $id_nasabah)->get()->result();
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/nasabah/index',$data);
 		$this->load->view('admin/layout/footer');
@@ -50,6 +51,7 @@ class Nasabah extends CI_Controller {
             $tmpt_lhr_nasabah = $this->input->post('tmpt_lhr_nasabah');
             $tgl_lhr_nasabah = $this->input->post('tgl_lhr_nasabah');
             $tlp_nasabah = $this->input->post('tlp_nasabah');
+            $no_ktp_nasabah = $this->input->post('no_ktp_nasabah');
             $email_nasabah = $this->input->post('email_nasabah');
             $stts_kwn_nasabah = $this->input->post('stts_kwn_nasabah');
             $pekerjaan_nasabah = $this->input->post('pekerjaan_nasabah');
@@ -76,6 +78,7 @@ class Nasabah extends CI_Controller {
                 'tmpt_lhr_nasabah' => $tmpt_lhr_nasabah,
                 'tgl_lhr_nasabah' => $tgl_lhr_nasabah,
                 'tlp_nasabah' => $tlp_nasabah,
+                'no_ktp_nasabah' => $no_ktp_nasabah,
                 'email_nasabah' => $email_nasabah,
                 'stts_kwn_nasabah' => $stts_kwn_nasabah,
                 'pekerjaan_nasabah' => $pekerjaan_nasabah,
@@ -92,6 +95,51 @@ class Nasabah extends CI_Controller {
             </button>
             </div>');
             redirect('nasabah');
+	}
+
+    public function edit($id) {
+		$data['nasabah'] = $this->db->get("nasabah")->result();
+		$data['nasabah'] = $this->db->get_where("nasabah", array("id_nasabah" => $id))->row();
+
+		// echo "<pre>";
+		// print_r($data);
+		
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/nasabah/edit', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+    public function update($id) {
+		$post = $this->input->post();
+
+		$data = array(
+            
+                'username' => $post['username'],
+                'nama' => $post['nama'],
+                'password' => md5($post['password']),
+                'almt_nasabah' => $post['almt_nasabah'],
+                'tmpt_lhr_nasabah' => $post['tmpt_lhr_nasabah'],
+                'tgl_lhr_nasabah' => $post['tgl_lhr_nasabah'],
+                'tlp_nasabah' => $post['tlp_nasabah'],
+                'no_ktp_nasabah' => $post['no_ktp_nasabah'],
+                'email_nasabah' => $post['email_nasabah'],
+                'stts_kwn_nasabah' => $post['stts_kwn_nasabah'],
+                'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
+                'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
+                'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
+                'foto' => $post['foto'],
+            );
+
+		$this->db->where('id_nasabah', $id)
+			->update('nasabah', $data);
+
+		redirect(base_url('/nasabah'));
+	}
+	public function hapus($id) {
+		$this->db->where('id_nasabah', $id)
+			->delete('nasabah');
+
+		redirect(base_url('/nasabah'));
 	}
 		
 }
