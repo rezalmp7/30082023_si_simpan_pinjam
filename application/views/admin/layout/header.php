@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="billing.html">
+                    <a class="nav-link " href="<?php echo base_url(); ?>pinjaman">
                         <div
                             class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-hand-holding-dollar"></i>
@@ -104,7 +104,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="billing.html">
+                    <a class="nav-link " href="<?php echo base_url(); ?>angsuran">
                         <div
                             class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-receipt"></i>
@@ -113,7 +113,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="billing.html">
+                    <a class="nav-link " href="<?php echo base_url(); ?>laporan">
                         <div
                             class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-book"></i>
