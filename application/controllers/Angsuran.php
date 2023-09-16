@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pinjaman extends CI_Controller {
+class Angsuran extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,21 +23,31 @@ class Pinjaman extends CI_Controller {
     }
 	public function index()
 	{
-		$data['pinjaman'] = $this->db->select('pinjaman.*, nasabah.nama as nama_nasabah')
-			->from('pinjaman')
-			->join('nasabah', 'pinjaman.id_nasabah = nasabah.id_nasabah')->get()->result();
+		$data['angsuran'] = $this->db->select('angsuran.*, nasabah.nama as nama_nasabah')
+			->from('angsuran')
+			->join('nasabah', 'angsuran.id_nasabah = nasabah.id_nasabah')->get()->result();
 
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/pinjaman/index', $data);
+		$this->load->view('admin/angsuran/index', $data);
 		$this->load->view('admin/layout/footer');
 	}
     
 	public function tambah() {
+        $get = $this->input->get();
+
 		$data['nasabah'] = $this->db->get("nasabah")->result();
 		
-		$this->load->view('admin/layout/header');
-		$this->load->view('admin/pinjaman/tambah', $data);
-		$this->load->view('admin/layout/footer');
+        if(isset($get['nasabah'])) {
+            $data['pinjaman_select'] = $this->db->get_where("pinjaman", array('id_nasabah' => $get['nasabah']))->row();
+            $data['nasabah_select'] = $this->db->get_where("nasabah", array('id_nasabah' => $get['nasabah']))->row();
+        }
+
+        echo "<pre>";
+        print_r($data);
+
+		// $this->load->view('admin/layout/header');
+		// $this->load->view('admin/angsuran/tambah', $data);
+		// $this->load->view('admin/layout/footer');
 	}
     public function upload_foto_nasabah($input_file_photo, $namaFile) {
         $config['upload_path']          = './assets/foto_nasabah_peminjam/';
@@ -64,7 +74,7 @@ class Pinjaman extends CI_Controller {
         $upload_foto = $this->upload_foto_nasabah("foto", $namaFile);
 
         if($upload_foto != "error") {
-            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']);
+            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']*12);
             $data = array(
             	"id_nasabah" => $post['nasabah'],
             	"tgl_pinjaman" => $post['tgl_pinjaman'],
@@ -108,7 +118,7 @@ class Pinjaman extends CI_Controller {
 		}
 
         if($upload_foto != "error") {
-            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']);
+            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']*12);
             $data = array(
             	"id_nasabah" => $post['nasabah'],
             	"tgl_pinjaman" => $post['tgl_pinjaman'],

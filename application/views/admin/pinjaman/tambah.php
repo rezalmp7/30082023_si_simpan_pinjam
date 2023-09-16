@@ -22,12 +22,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Jangka Pinjaman(Tahun)</label>
-                        <input class="form-control" type="number" name="jangka_pinjaman" onkeyup="onChangeNominalAngsuran()" id="input_jangka_pinjaman" placeholder="20000">
+                        <label for="example-text-input" class="form-control-label">Jangka Pinjaman(Bulan)</label>
+                        <input class="form-control" type="number" name="jangka_pinjaman" onkeyup="onChangeNominalAngsuran()" id="input_jangka_pinjaman" placeholder="12">
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Bunga Pinjaman(%)</label>
-                        <input class="form-control" type="number" name="bunga_pinjaman" placeholder="20000" required>
+                        <input class="form-control" type="number" name="bunga_pinjaman" placeholder="12" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Foto Nasabah</label>
@@ -39,11 +39,11 @@
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Nominal Pengajuan Pinjaman</label>
-                        <input class="form-control" type="number" name="nominal_pinjaman" placeholder="20000" required>
+                        <input class="form-control" type="number" name="nominal_pinjaman" placeholder="20000000" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Pinjaman Yang Disetujui</label>
-                        <input class="form-control" type="number" name="nominal_disetujui" onkeyup="onChangeNominalAngsuran()" id="input_nominal_disetujui" placeholder="20000" required>
+                        <input class="form-control" type="number" name="nominal_disetujui" onkeyup="onChangeNominalAngsuran()" id="input_nominal_disetujui" placeholder="20000000" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Nominal Angsuran</label>
@@ -66,7 +66,7 @@
         let jangka_pinjaman = input_jangka_pinjaman ? input_jangka_pinjaman : 0;
         let nominal_disetujui = input_nominal_disetujui ? input_nominal_disetujui : 0;
 
-        let berapakali_angsuran = jangka_pinjaman*12;
+        let berapakali_angsuran = jangka_pinjaman;
         let nominal_angsuran = nominal_disetujui / berapakali_angsuran;
 
         console.log("jangka_pinjaman", jangka_pinjaman);

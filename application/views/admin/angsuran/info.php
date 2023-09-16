@@ -47,7 +47,7 @@
             <div class="card-body pt-4 p-3" style="height: 500px; overflow-y: scroll;">
                 <ul class="list-group">
                     <?php
-                    for ($i=0; $i < $pinjaman->jangka_pinjaman; $i++) { 
+                    for ($i=0; $i < $pinjaman->jangka_pinjaman*12; $i++) { 
                     ?>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                         <div class="d-flex align-items-center">

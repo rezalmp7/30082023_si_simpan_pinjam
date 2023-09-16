@@ -22,12 +22,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Jangka Pinjaman(Bulan)</label>
-                        <input class="form-control" type="number" name="jangka_pinjaman" onkeyup="onChangeNominalAngsuran()" value="<?php echo $pinjaman->jangka_pinjaman; ?>" id="input_jangka_pinjaman" placeholder="12" required>
+                        <label for="example-text-input" class="form-control-label">Jangka Pinjaman(Tahun)</label>
+                        <input class="form-control" type="number" name="jangka_pinjaman" onkeyup="onChangeNominalAngsuran()" value="<?php echo $pinjaman->jangka_pinjaman; ?>" id="input_jangka_pinjaman" placeholder="20000" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Bunga Pinjaman(%)</label>
-                        <input class="form-control" type="number" name="bunga_pinjaman" value="<?php echo $pinjaman->bunga; ?>" placeholder="12" required>
+                        <input class="form-control" type="number" name="bunga_pinjaman" value="<?php echo $pinjaman->bunga; ?>" placeholder="20000" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Ganti Foto Nasabah</label><br>
@@ -40,11 +40,11 @@
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Nominal Pengajuan Pinjaman</label>
-                        <input class="form-control" type="number" name="nominal_pinjaman" placeholder="20000000" value="<?php echo $pinjaman->nominal_pinjaman; ?>" required>
+                        <input class="form-control" type="number" name="nominal_pinjaman" placeholder="20000" value="<?php echo $pinjaman->nominal_pinjaman; ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Pinjaman Yang Disetujui</label>
-                        <input class="form-control" type="number" name="nominal_disetujui" onkeyup="onChangeNominalAngsuran()" id="input_nominal_disetujui" placeholder="20000000" value="<?php echo $pinjaman->nominal_setuju; ?>" required>
+                        <input class="form-control" type="number" name="nominal_disetujui" onkeyup="onChangeNominalAngsuran()" id="input_nominal_disetujui" placeholder="20000" value="<?php echo $pinjaman->nominal_setuju; ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Nominal Angsuran</label>
@@ -67,7 +67,7 @@
         let jangka_pinjaman = input_jangka_pinjaman ? input_jangka_pinjaman : 0;
         let nominal_disetujui = input_nominal_disetujui ? input_nominal_disetujui : 0;
 
-        let berapakali_angsuran = jangka_pinjaman;
+        let berapakali_angsuran = jangka_pinjaman*12;
         let nominal_angsuran = nominal_disetujui / berapakali_angsuran;
 
         console.log("jangka_pinjaman", jangka_pinjaman);
