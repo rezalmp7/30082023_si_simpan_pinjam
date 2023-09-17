@@ -2,7 +2,7 @@
     <div class="col-12 mb-lg-0 mb-4">
         <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize">Tambah Nasabah</h6>
+                <h6 class="text-capitalize">Edit Nasabah</h6>
             </div>
             <div class="card-body p-3">
                 <form action="<?php echo base_url(); ?>nasabah/update/<?php echo $nasabah->id_nasabah; ?>"
