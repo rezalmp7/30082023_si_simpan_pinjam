@@ -66,18 +66,20 @@ class Angsuran extends CI_Controller {
             
             foreach ($pinjamanSelect as $key => $value) {                
                 $cekAngsuranSelesaiQuery = $this->db->select("*")
-                    ->from('angsuranpaid')
+                    ->from('angsuran')
                     ->where('id_pinjaman', $value->id_pinjaman)
-                    ->order_by('angsuran', 'DESC')
+                    ->order_by('tahap_angsuran', 'ASC')
                     ->get();
                 $cekAngsuranSelesaiData = $cekAngsuranSelesaiQuery->last_row();
-                
+				// print_r($cekAngsuranSelesaiData);
                 if($cekAngsuranSelesaiData) {
-                    $angsuranKe = $cekAngsuranSelesaiData->angsuran+1;
+                    $angsuranKe = $cekAngsuranSelesaiData->tahap_angsuran+1;
+                    $angsuranBulan = date("M Y", strtotime("+".$angsuranKe."month", strtotime($value->tgl_pinjaman)));
                     $angsuranPerPinjaman[] = array(
                         'data_pinjaman' => $value,
                         'angsuran' => $angsuranKe,
                         'angsuran_bulan' => date("M Y", strtotime("+".$angsuranKe."month", strtotime($value->tgl_pinjaman))),
+                        'isTelat' => date('Ym', strtotime($tanggalIni)) <= date('Ym', strtotime($angsuranBulan)) ? 0 : 1,
                         'nominal_angsuran' => $value->nominal_angsuran + ($value->nominal_setuju*$value->bunga/100)/12
                     );
                 } else {
@@ -93,103 +95,56 @@ class Angsuran extends CI_Controller {
                     );
                 }
             }
+            $data['pinjamanSelect'] = $pinjamanSelect;
+            $data['angsuranPerPinjaman'] = $angsuranPerPinjaman;
         }
 
-        $data['pinjamanSelect'] = $pinjamanSelect;
-
-        $data['angsuranPerPinjaman'] = $angsuranPerPinjaman;
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/angsuran/tambah', $data);
 		$this->load->view('admin/layout/footer');
 	}
-    public function upload_foto_nasabah($input_file_photo, $namaFile) {
-        $config['upload_path']          = './assets/foto_nasabah_peminjam/';
-        $config['allowed_types']        = 'gif|jpg|jpeg|png';
-        $config['file_name']            = $namaFile;
-        $config['overwrite']            = true;
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload($input_file_photo)) {
-            $error = $this->upload->display_errors();
-            
-            return "error";
-        } else {
-            $uploaded_data = $this->upload->data();
-
-            return $uploaded_data['file_name'];
-        }
-    }
 	public function store() {
 		$post = $this->input->post();
 
-        $namaFile = time();
-        $upload_foto = $this->upload_foto_nasabah("foto", $namaFile);
+		$data = array(
+			"id_nasabah" => $post['nasabah'],
+			"id_pinjaman" => $post['pinjaman'],
+			"tgl_angsuran" => $post['tgl_pembayaran'],
+			"nominal_angsuran" => $post['nominal_angsuran'],
+			"tahap_angsuran" => $post['thp_angsuran'],
+			"terlambat" => $post["terlambat_pembayaran"],
+			"denda" => $post['denda'],
+			"total_bayar" => $post['total_bayar'],
+		);
 
-        if($upload_foto != "error") {
-            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']*12);
-            $data = array(
-            	"id_nasabah" => $post['nasabah'],
-            	"tgl_pinjaman" => $post['tgl_pinjaman'],
-            	"jangka_pinjaman" => $post['jangka_pinjaman'],
-            	"nominal_pinjaman" => $post['nominal_pinjaman'],
-            	"bunga" => $post['bunga_pinjaman'],
-            	"foto" => $upload_foto,
-            	"nominal_angsuran" => $nominal_angsuran,
-            	"nominal_setuju" => $post['nominal_disetujui'],
-            );
+		$this->db->insert('angsuran', $data);
 
-            $this->db->insert('pinjaman', $data);
-
-		    redirect(base_url('/pinjaman'));
-        } else {
-		    redirect(base_url('/pinjaman/tambah'));
-        }
+		redirect(base_url('/angsuran'));
 
 	}
 	public function edit($id) {
-		$data['nasabah'] = $this->db->get("nasabah")->result();
-		$data['pinjaman'] = $this->db->get_where("pinjaman", array("id_pinjaman" => $id))->row();
-
+		// $data['nasabah'] = $this->db->get("nasabah")->result();
+		$data['angsuran'] = $this->db->get_where('angsuran', array('id_angsuran' => $id))->row();
 		// echo "<pre>";
 		// print_r($data);
 		
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/pinjaman/edit', $data);
+		$this->load->view('admin/angsuran/edit', $data);
 		$this->load->view('admin/layout/footer');
 	}
 	public function update($id) {
 		$post = $this->input->post();
+		$data = array(
+			"tgl_angsuran" => $post['tgl_pembayaran'],
+			"nominal_angsuran" => $post['nominal_angsuran'],
+			"tahap_angsuran" => $post['thp_angsuran'],
+			"terlambat" => $post["terlambat_pembayaran"],
+			"denda" => $post['denda'],
+			"total_bayar" => $post['total_bayar'],
+		);
+		$this->db->where('id_angsuran', $id)->update("angsuran", $data);
 
-		$data_pinjaman = $this->db->get_where('pinjaman', array('id_pinjaman' => $id))->row();
-        $namaFile = time();
-		
-		if($_FILES['foto']['name']) {
-			$upload_foto = $this->upload_foto_nasabah("foto", $namaFile);
-		} else {
-			$upload_foto = $data_pinjaman->foto;
-		}
-
-        if($upload_foto != "error") {
-            $nominal_angsuran = $post['nominal_disetujui']/($post['jangka_pinjaman']*12);
-            $data = array(
-            	"id_nasabah" => $post['nasabah'],
-            	"tgl_pinjaman" => $post['tgl_pinjaman'],
-            	"jangka_pinjaman" => $post['jangka_pinjaman'],
-            	"nominal_pinjaman" => $post['nominal_pinjaman'],
-            	"bunga" => $post['bunga_pinjaman'],
-            	"foto" => $upload_foto,
-            	"nominal_angsuran" => $nominal_angsuran,
-            	"nominal_setuju" => $post['nominal_disetujui'],
-            );
-
-			$this->db->where('id_pinjaman', $id)
-				->update('pinjaman', $data);
-
-		    redirect(base_url('/pinjaman'));
-        } else {
-		    redirect(base_url('/pinjaman/edit/'.$id));
-        }
+		redirect(base_url('/angsuran'));
 	}
 	public function info($id) {
 		$data['pinjaman'] = $this->db->get_where("pinjaman", array("id_pinjaman" => $id))->row();
@@ -200,9 +155,9 @@ class Angsuran extends CI_Controller {
 		$this->load->view('admin/layout/footer');
 	}
 	public function hapus($id) {
-		$this->db->where('id_pinjaman', $id)
-			->delete('pinjaman');
+		$this->db->where('id_angsuran', $id)
+			->delete('angsuran');
 
-		redirect(base_url('/pinjaman'));
+		redirect(base_url('/angsuran'));
 	}
 }

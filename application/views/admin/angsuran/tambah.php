@@ -15,19 +15,20 @@
                             print_r($nasabah);
                             foreach ($nasabah as $key => $value) {
                             ?>
-                            <option value="<?php echo $value->id_nasabah; ?>" <?php if($nasabahSelect->id_nasabah == $value->id_nasabah) { echo "selected"; } ?>><?php echo $value->nama; ?></option>
+                            <option value="<?php echo $value->id_nasabah; ?>"><?php echo $value->nama; ?></option>
                             <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Cari...</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <?php if(isset($angsuranPerPinjaman)) { ?>
     <div class="col-12 mb-lg-0 mb-4">
         <div class="card z-index-2 h-100 mt-5">
             <div class="card-header pb-0 pt-3 bg-transparent">
@@ -59,9 +60,10 @@
                 }
                 ?>
                 <form method="POST" action="<?php echo base_url(); ?>angsuran/store">
+                    <input type="hidden" name="nasabah" value="<?php echo $nasabahSelect->id_nasabah; ?>">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Pinjaman</label>
-                        <select class="select_2_class col-12 form-control" name="nasabah" required>
+                        <select class="select_2_class col-12 form-control" name="pinjaman" required>
                             <option>-- Pilih Pinjaman --</option>
                             <?php
                             foreach ($pinjamanSelect as $key => $value) {
@@ -77,7 +79,7 @@
                         <input class="form-control" type="number" name="nominal_angsuran" placeholder="20000000" required>
                     </div>
                     <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Terlambat Pembayaran</label>
+                        <label for="example-text-input" class="form-control-label">Terlambat Pembayaran (Hari)</label>
                         <input class="form-control" type="number" name="terlambat_pembayaran" id="input_nominal_disetujui" placeholder="20000000" required>
                     </div>
                     <div class="form-group">
@@ -103,5 +105,6 @@
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>
 <div class="clearfix"></div>

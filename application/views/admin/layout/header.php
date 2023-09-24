@@ -18,10 +18,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>/assets/admin/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>/assets/admin/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/assets/images/logo_square.png">
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/assets/images/logo_square.png">
     <title>
-        Argon Dashboard 2 by Creative Tim
+        Koperasi Arta Gamma Sejahtera
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -42,8 +42,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-                target="_blank">
+            <a class="navbar-brand m-0" href="<?php echo base_url(); ?>dashboard">
                 <img src="<?php echo base_url(); ?>assets/assets/images/logo_1.png" class="navbar-brand-img h-100" alt="main_logo">
             </a>
         </div>
