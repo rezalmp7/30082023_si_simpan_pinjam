@@ -49,6 +49,8 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <?php
+                if($this->session->userdata('level') == 'teller') { ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="<?php echo base_url(); ?>dashboard">
                         <div class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -64,15 +66,6 @@
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <span class="nav-link-text ms-1">Nasabah</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url(); ?>teller">
-                        <div
-                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-clipboard-user"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Teller</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -120,6 +113,93 @@
                         <span class="nav-link-text ms-1">Laporan</span>
                     </a>
                 </li>
+                <?php } ?>
+                <?php
+                if($this->session->userdata('level') == 'nasabah') { ?>
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo base_url(); ?>dashboard">
+                        <div class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>tabungan">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Tabungan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>penarikan">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Penarikan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>pinjaman">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Pinjaman</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>angsuran">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Angsuran</span>
+                    </a>
+                </li>
+                <?php } ?>
+                
+                <?php
+                if($this->session->userdata('level') == 'manager') { ?>
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo base_url(); ?>dashboard">
+                        <div class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>nasabah">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Nasabah</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>teller">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-clipboard-user"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Teller</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url(); ?>laporan">
+                        <div
+                            class="icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Laporan</span>
+                    </a>
+                </li>
+                <?php } ?>
             </ul>
         </div>
     </aside>
@@ -141,24 +221,14 @@
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Sign In</span>
-                            </a>
-                        </li>
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                                <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                </div>
+                                <span class="d-sm-inline d-none"><?php echo $this->session->userdata('nama'); ?></span>
                             </a>
                         </li>
                         <li class="nav-item px-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0">
-                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            <a href="<?php echo base_url(); ?>login/logout" class="nav-link text-white p-0">
+                                <i class="fas fa-sign-out-alt fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
