@@ -60,7 +60,7 @@ class Nasabah extends CI_Controller {
             $foto = $_FILES['foto']['name'];
             if ($foto = '') {
             } else {
-                $config['upload_path'] = './assets/foto';
+                $config['upload_path'] = './assets/assets/foto/';
                 $config['allowed_types'] = 'jpg|jpeg|png';
 
                 $this->load->library('upload', $config);
@@ -111,7 +111,19 @@ class Nasabah extends CI_Controller {
 
     public function update($id) {
 		$post = $this->input->post();
-
+        $foto = $_FILES['foto']['name'];
+            if ($foto = '') {
+            } else {
+                $config['upload_path'] = './assets/assets/foto/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto')) {
+                    $foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $foto);
+                } else {
+                    echo $this->upload->display_error;
+                }
+        }
 		$data = array(
             
                 'username' => $post['username'],
@@ -127,7 +139,7 @@ class Nasabah extends CI_Controller {
                 'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
                 'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
                 'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
-                'foto' => $post['foto'],
+                'foto' => $foto,
             );
 
 		$this->db->where('id_nasabah', $id)
