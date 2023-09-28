@@ -60,7 +60,7 @@ class Nasabah extends CI_Controller {
             $foto = $_FILES['foto']['name'];
             if ($foto = '') {
             } else {
-                $config['upload_path'] = './assets/assets/foto/';
+                $config['upload_path'] = './assets/foto_nasabah/';
                 $config['allowed_types'] = 'jpg|jpeg|png';
 
                 $this->load->library('upload', $config);
@@ -114,7 +114,7 @@ class Nasabah extends CI_Controller {
         $foto = $_FILES['foto']['name'];
             if ($foto = '') {
             } else {
-                $config['upload_path'] = './assets/assets/foto/';
+                $config['upload_path'] = './assets/foto_nasabah/';
                 $config['allowed_types'] = 'jpg|jpeg|png';
                 $this->load->library('upload', $config);
                 if ($this->upload->do_upload('foto')) {
