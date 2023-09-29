@@ -7,7 +7,7 @@
                 <a href="<?php echo base_url(); ?>/laporan/tambah" class="btn btn-success btn-sm float-end">Tambah</a>
             </div>
             <div class="card-body p-3">
-                <table class="table table-lg datatables" style="width:100%; font-size: 13px;">
+                <table class="table table-lg" id="datatables_laporan" style="width:100%; font-size: 13px;">
                     <thead>
                         <tr>
                             <th>No</th>
