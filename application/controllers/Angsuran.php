@@ -23,9 +23,16 @@ class Angsuran extends CI_Controller {
     }
 	public function index()
 	{
-		$data['angsuran'] = $this->db->select('angsuran.*, nasabah.nama as nama_nasabah')
-			->from('angsuran')
-			->join('nasabah', 'angsuran.id_nasabah = nasabah.id_nasabah')->get()->result();
+		if($this->session->userdata('level') == 'nasabah') {
+			$data['angsuran'] = $this->db->select('angsuran.*, nasabah.nama as nama_nasabah')
+				->from('angsuran')
+				->where('nasabah.id_nasabah', $this->session->userdata('id_user'))
+				->join('nasabah', 'angsuran.id_nasabah = nasabah.id_nasabah')->get()->result();
+		} else {
+			$data['angsuran'] = $this->db->select('angsuran.*, nasabah.nama as nama_nasabah')
+				->from('angsuran')
+				->join('nasabah', 'angsuran.id_nasabah = nasabah.id_nasabah')->get()->result();
+		}
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/angsuran/index', $data);

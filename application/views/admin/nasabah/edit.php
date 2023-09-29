@@ -121,7 +121,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Foto Nasabah</label>
+                            <label>Foto Nasabah</label><br>
+                            <img class="col-12" src="<?php echo base_url(); ?>assets/foto_nasabah/<?php echo $nasabah->foto; ?>" alt="<?php echo $nasabah->nama; ?>">
                             <div class="form-group">
                                 <input type="file" name="foto" class="form-control"
                                     value="<?php echo $nasabah->foto; ?>">

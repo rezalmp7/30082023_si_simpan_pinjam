@@ -20,9 +20,16 @@ class Penarikan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['penarikan'] = $this->db->select('penarikan.*, nasabah.nama as nama_nasabah')
-			->from('penarikan')
-			->join('nasabah', 'penarikan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		if($this->session->userdata('level') == 'nasabah') {
+			$data['penarikan'] = $this->db->select('penarikan.*, nasabah.nama as nama_nasabah')
+				->from('penarikan')
+				->where('nasabah.id_nasabah', $this->session->userdata('id_user'))
+				->join('nasabah', 'penarikan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		} else {
+			$data['penarikan'] = $this->db->select('penarikan.*, nasabah.nama as nama_nasabah')
+				->from('penarikan')
+				->join('nasabah', 'penarikan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		}
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/penarikan/index', $data);

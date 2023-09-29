@@ -30,14 +30,17 @@ class Login extends CI_Controller {
 		switch ($level) {
 			case 0:
 				$user = $this->db->get_where('nasabah', ['username' => $username])->row_array();
+				$id_user = $user['id_nasabah'];
 				$level = 'nasabah';
 				break;
 			case 1:
 				$user = $this->db->get_where('teller', ['username' => $username])->row_array();
+				$id_user = $user['id_teller'];
 				$level = 'teller';
 				break;
 			case 2:
 				$user = $this->db->get_where('manager', ['username' => $username])->row_array();
+				$id_user = $user['id_manager'];
 				$level = 'manager';
 				break;
 			default:
@@ -49,6 +52,7 @@ class Login extends CI_Controller {
 			if (md5($password) == $user['password']) {
 				$data = [
 					'status' => 'login_admin',
+					'id_user' => $id_user,
 					'nama' => $user['nama'],
 					'username' => $user['username'],
 					'level' => $level

@@ -18,11 +18,21 @@ class Tabungan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+	function __construct() {
+		parent::__construct();
+	}
 	public function index()
 	{
-		$data['tabungan'] = $this->db->select('tabungan.*, nasabah.nama as nama_nasabah')
-			->from('tabungan')
-			->join('nasabah', 'tabungan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		if($this->session->userdata('level') == 'nasabah') {
+			$data['tabungan'] = $this->db->select('tabungan.*, nasabah.nama as nama_nasabah')
+				->from('tabungan')
+				->where('nasabah.id_nasabah', $this->session->userdata('id_user'))
+				->join('nasabah', 'tabungan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		} else {
+			$data['tabungan'] = $this->db->select('tabungan.*, nasabah.nama as nama_nasabah')
+				->from('tabungan')
+				->join('nasabah', 'tabungan.id_nasabah = nasabah.id_nasabah')->get()->result();
+		}
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/tabungan/index', $data);

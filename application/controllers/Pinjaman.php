@@ -23,10 +23,16 @@ class Pinjaman extends CI_Controller {
     }
 	public function index()
 	{
-		$data['pinjaman'] = $this->db->select('pinjaman.*, nasabah.nama as nama_nasabah')
-			->from('pinjaman')
-			->join('nasabah', 'pinjaman.id_nasabah = nasabah.id_nasabah')->get()->result();
-
+		if($this->session->userdata('level') == 'nasabah') {
+			$data['pinjaman'] = $this->db->select('pinjaman.*, nasabah.nama as nama_nasabah')
+				->from('pinjaman')
+				->where('nasabah.id_nasabah', $this->session->userdata('id_user'))
+				->join('nasabah', 'pinjaman.id_nasabah = nasabah.id_nasabah')->get()->result();
+		} else {
+			$data['pinjaman'] = $this->db->select('pinjaman.*, nasabah.nama as nama_nasabah')
+				->from('pinjaman')
+				->join('nasabah', 'pinjaman.id_nasabah = nasabah.id_nasabah')->get()->result();
+		}
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/pinjaman/index', $data);
 		$this->load->view('admin/layout/footer');
