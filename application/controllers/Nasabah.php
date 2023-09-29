@@ -44,57 +44,45 @@ class Nasabah extends CI_Controller {
 	}
 	public function tambah_nasabah_aksi()
     {
-            $username = $this->input->post('username');
-            $nama = $this->input->post('nama');
-            $password = $this->input->post('password');
-            $almt_nasabah = $this->input->post('almt_nasabah');
-            $tmpt_lhr_nasabah = $this->input->post('tmpt_lhr_nasabah');
-            $tgl_lhr_nasabah = $this->input->post('tgl_lhr_nasabah');
-            $tlp_nasabah = $this->input->post('tlp_nasabah');
-            $no_ktp_nasabah = $this->input->post('no_ktp_nasabah');
-            $email_nasabah = $this->input->post('email_nasabah');
-            $stts_kwn_nasabah = $this->input->post('stts_kwn_nasabah');
-            $pekerjaan_nasabah = $this->input->post('pekerjaan_nasabah');
-            $nm_prshaan_nasabah = $this->input->post('nm_prshaan_nasabah');
-            $almt_prshaan_nasabah = $this->input->post('almt_prshaan_nasabah');
-            $foto = $_FILES['foto']['name'];
-            if ($foto = '') {
+        $post = $this->input->post();
+        
+        $foto = $_FILES['foto']['name'];
+        if ($foto != '') {
+            $config['upload_path'] = './assets/foto_nasabah/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('foto')) {
+                echo "foto nasabah Gagal di upload!";
             } else {
-                $config['upload_path'] = './assets/foto_nasabah/';
-                $config['allowed_types'] = 'jpg|jpeg|png';
-
-                $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('foto')) {
-                    echo "foto nasabah Gagal di upload!";
-                } else {
-                    $foto = $this->upload->data('file_name');
-                }
+                $foto = $this->upload->data('file_name');
+            }
         }
-				$data = array(
-                'username' => $username,
-                'nama' => $nama,
-                'password' => md5($password),
-                'almt_nasabah' => $almt_nasabah,
-                'tmpt_lhr_nasabah' => $tmpt_lhr_nasabah,
-                'tgl_lhr_nasabah' => $tgl_lhr_nasabah,
-                'tlp_nasabah' => $tlp_nasabah,
-                'no_ktp_nasabah' => $no_ktp_nasabah,
-                'email_nasabah' => $email_nasabah,
-                'stts_kwn_nasabah' => $stts_kwn_nasabah,
-                'pekerjaan_nasabah' => $pekerjaan_nasabah,
-                'nm_prshaan_nasabah' => $nm_prshaan_nasabah,
-                'almt_prshaan_nasabah' => $almt_prshaan_nasabah,
-                'foto' => $foto,
+        $data = array(
+            'username' => $post['username'],
+            'nama' => $post['nama'],
+            'password' => md5($post['password']),
+            'almt_nasabah' => $post['almt_nasabah'],
+            'tmpt_lhr_nasabah' => $post['tmpt_lhr_nasabah'],
+            'tgl_lhr_nasabah' => $post['tgl_lhr_nasabah'],
+            'tlp_nasabah' => $post['tlp_nasabah'],
+            'no_ktp_nasabah' => $post['no_ktp_nasabah'],
+            'email_nasabah' => $post['email_nasabah'],
+            'stts_kwn_nasabah' => $post['stts_kwn_nasabah'],
+            'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
+            'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
+            'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
+            'foto' => foto,
 
-            );
-            $this->Data_model->insert_data($data, 'nasabah');
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        );
+        $this->Data_model->insert_data($data, 'nasabah');
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             nasabah Baru Berhasil Ditambahkan!!!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
-            </div>');
-            redirect('nasabah');
+        </div>');
+        redirect('nasabah');
 	}
 
     public function edit($id) {
@@ -125,22 +113,21 @@ class Nasabah extends CI_Controller {
                 }
         }
 		$data = array(
-            
-                'username' => $post['username'],
-                'nama' => $post['nama'],
-                'password' => md5($post['password']),
-                'almt_nasabah' => $post['almt_nasabah'],
-                'tmpt_lhr_nasabah' => $post['tmpt_lhr_nasabah'],
-                'tgl_lhr_nasabah' => $post['tgl_lhr_nasabah'],
-                'tlp_nasabah' => $post['tlp_nasabah'],
-                'no_ktp_nasabah' => $post['no_ktp_nasabah'],
-                'email_nasabah' => $post['email_nasabah'],
-                'stts_kwn_nasabah' => $post['stts_kwn_nasabah'],
-                'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
-                'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
-                'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
-                'foto' => $foto,
-            );
+            'username' => $post['username'],
+            'nama' => $post['nama'],
+            'password' => md5($post['password']),
+            'almt_nasabah' => $post['almt_nasabah'],
+            'tmpt_lhr_nasabah' => $post['tmpt_lhr_nasabah'],
+            'tgl_lhr_nasabah' => $post['tgl_lhr_nasabah'],
+            'tlp_nasabah' => $post['tlp_nasabah'],
+            'no_ktp_nasabah' => $post['no_ktp_nasabah'],
+            'email_nasabah' => $post['email_nasabah'],
+            'stts_kwn_nasabah' => $post['stts_kwn_nasabah'],
+            'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
+            'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
+            'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
+            'foto' => $foto,
+        );
 
 		$this->db->where('id_nasabah', $id)
 			->update('nasabah', $data);
