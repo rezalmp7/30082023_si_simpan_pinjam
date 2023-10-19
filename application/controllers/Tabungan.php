@@ -86,17 +86,8 @@ class Tabungan extends CI_Controller {
 		redirect(base_url('/tabungan'));
 	}
 	public function hapus($id) {
-		$post = $this->input->post();
-
-		$data = array(
-			"id_nasabah" => $post['nasabah'],
-			"nominal_tabungan" => $post['nominal'],
-			"tgl_tabungan" => $post['tanggal_tabungan'],
-			"jns_tabungan" => $post['jenis_tabungan'],
-		);
-
 		$this->db->where('id_tabungan', $id)
-			->update('tabungan', $data);
+			->delete('tabungan');
 
 		redirect(base_url('/tabungan'));
 	}

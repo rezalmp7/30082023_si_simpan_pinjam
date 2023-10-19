@@ -72,7 +72,7 @@ class Nasabah extends CI_Controller {
             'pekerjaan_nasabah' => $post['pekerjaan_nasabah'],
             'nm_prshaan_nasabah' => $post['nm_prshaan_nasabah'],
             'almt_prshaan_nasabah' => $post['almt_prshaan_nasabah'],
-            'foto' => foto,
+            'foto' => $foto,
 
         );
         $this->Data_model->insert_data($data, 'nasabah');
