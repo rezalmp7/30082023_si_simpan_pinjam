@@ -30,17 +30,17 @@ class Login extends CI_Controller {
 		switch ($level) {
 			case 0:
 				$user = $this->db->get_where('nasabah', ['username' => $username])->row_array();
-				$id_user = $user['id_nasabah'];
+				$id_user = $user ? $user['id_nasabah'] : null;
 				$level = 'nasabah';
 				break;
 			case 1:
 				$user = $this->db->get_where('teller', ['username' => $username])->row_array();
-				$id_user = $user['id_teller'];
+				$id_user = $user ? $user['id_teller'] : null;
 				$level = 'teller';
 				break;
 			case 2:
 				$user = $this->db->get_where('manager', ['username' => $username])->row_array();
-				$id_user = $user['id_manager'];
+				$id_user = $user ? $user['id_manager'] : null;
 				$level = 'manager';
 				break;
 			default:
@@ -61,11 +61,11 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($data);
 				redirect(base_url('dashboard'));
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+				$this->session->set_flashdata('message', 'Password salah!');
 				redirect(base_url('login'));
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User tidak terdaftar!</div>');
+			$this->session->set_flashdata('message', 'User tidak terdaftar!');
 			redirect(base_url('login'));
 		}
 	}

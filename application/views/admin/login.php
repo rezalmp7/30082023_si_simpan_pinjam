@@ -33,9 +33,23 @@
   <link href="<?php echo base_url(); ?>assets/admin/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="<?php echo base_url(); ?>assets/admin/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="">
+  
+    <?php if ($this->session->flashdata('message')): ?>
+        <script>
+            Swal.fire({
+              position: 'top-right',
+              icon: 'warning',
+              title: 'Akun tidak terdaftar',
+              showConfirmButton: false,
+              timer: 1500
+            })
+        </script>
+        <?php $this->session->set_flashdata('message', null); ?>
+    <?php endif; ?>
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
