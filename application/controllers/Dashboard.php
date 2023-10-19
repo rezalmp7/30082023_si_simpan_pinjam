@@ -19,9 +19,16 @@ class Dashboard extends CI_Controller {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 	public function index()
-	{
+	{		
+		$data['tabungan'] = $this->db->from('tabungan')->select_sum('nominal_tabungan')->get()->row_array();
+		$data['penarikan'] = $this->db->from('penarikan')->select_sum('nominal_penarikan')->get()->row_array();
+		$data['pinjaman'] = $this->db->from('pinjaman')->select_sum('nominal_pinjaman')->get()->row_array();
+
+		// echo "<pre>";
+		// print_r($data);
+
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/dashboard/index');
+		$this->load->view('admin/dashboard/index', $data);
 		$this->load->view('admin/layout/footer');
 	}
 }

@@ -4,7 +4,9 @@
         <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
             <h6 class="text-capitalize d-inline">Data Laporan</h6>
+                <?php if($this->session->userdata('level') == 'teller') { ?>
                 <a href="<?php echo base_url(); ?>/laporan/tambah" class="btn btn-success btn-sm float-end">Tambah</a>
+                <?php } ?>
             </div>
             <div class="card-body p-3">
                 <table class="table table-lg" id="datatables_laporan" style="width:100%; font-size: 13px;">
@@ -15,7 +17,9 @@
                             <th>Pemasukan</th>
                             <th>Pengeluaran</th>
                             <th>Total Pendapan</th>
+                            <?php if($this->session->userdata('level') == 'teller') { ?>
                             <th>Aksi</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +32,7 @@
                             <td><?php echo number_format($value->pemasukan); ?></td>
                             <td><?php echo number_format($value->pengeluaran); ?></td>
                             <td><?php echo number_format($value->total_pendapatan); ?></td>
+                            <?php if($this->session->userdata('level') == 'teller') { ?>
                             <td>
                                 <div class="dropdown">
                                     <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,6 +44,7 @@
                                     </ul>
                                 </div>
                             </td>
+                            <?php } ?>
                         </tr>
                         <?php
                         }

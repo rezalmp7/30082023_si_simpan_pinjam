@@ -2,7 +2,9 @@
     <div class="card z-index-2 h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
             <h6 class="text-capitalize d-inline">Data teller</h6>
+            <?php if($this->session->userdata('level') == 'teller') { ?>
             <a href="<?php echo base_url('teller/tambah_teller') ?>" class="btn btn-success btn-sm float-end">Tambah</a>
+            <?php } ?>
         </div>
         <div class="card-body p-3">
             <?php echo $this->session->flashdata('pesan') ?>
@@ -15,8 +17,10 @@
                                 </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama
                                     teller</th>
+                                <?php if($this->session->userdata('level') == 'teller') { ?>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi
                                 </th>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +41,7 @@
                                         </p>
                                     </div>
                                 </td>
+                                <?php if($this->session->userdata('level') == 'teller') { ?>
                                 <td>
                                     <div class="dropdown">
                                         <span class="dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -54,6 +59,7 @@
                                         </ul>
                                     </div>
                                 </td>
+                                <?php } ?>
                             </tr>
                             <?php endforeach; ?>
 

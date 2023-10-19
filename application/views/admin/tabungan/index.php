@@ -4,7 +4,7 @@
         <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
                 <h6 class="text-capitalize d-inline">Data Tabungan Nasabah</h6>
-                <?php if($this->session->userdata('level') != 'nasabah') { ?>
+                <?php if($this->session->userdata('level') == 'teller') { ?>
                 <a href="<?php echo base_url(); ?>/tabungan/tambah" class="btn btn-success btn-sm float-end">Tambah</a>
                 <?php } ?>
             </div>
@@ -17,7 +17,7 @@
                             <th>Nominal</th>
                             <th>Tanggal Tabungan</th>
                             <th>Jenis Tabungan</th>
-                            <?php if($this->session->userdata('level') != 'nasabah') { ?>
+                            <?php if($this->session->userdata('level') == 'teller') { ?>
                             <th>Aksi</th>
                             <?php } ?>
                         </tr>
@@ -32,7 +32,7 @@
                             <td><?php echo number_format($value->nominal_tabungan); ?></td>
                             <td><?php echo date("d/m/Y", strtotime($value->tgl_tabungan)); ?></td>
                             <td><?php echo $value->jns_tabungan; ?></td>
-                            <?php if($this->session->userdata('level') != 'nasabah') { ?>
+                            <?php if($this->session->userdata('level') == 'teller') { ?>
                             <td>
                                 <div class="dropdown">
                                     <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
